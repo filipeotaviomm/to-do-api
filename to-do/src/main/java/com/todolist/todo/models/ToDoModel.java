@@ -3,6 +3,9 @@ package com.todolist.todo.models;
 // import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "todos")
@@ -11,32 +14,53 @@ public class ToDoModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false)
-  private String nome;
+  @NotBlank(message = "Name is mandatory")
+  @Size(max = 255, message = "Name cannot be longer than 255 characters")
+  private String name;
+
+  @NotBlank(message = "Description is mandatory")
+  @Size(max = 1000, message = "Description cannot be longer than 1000 characters")
+  private String description;
 
   @Column(nullable = false)
-  private String descricao;
-  private boolean realizado;
-  private int prioridade;
+  private boolean accomplished;
+
+  @Column(nullable = false)
+  private Priority priority;
+
+  @Column(name = "created_at", nullable = false, updatable = false)
+  private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
+
+  @Column(name = "updated_at", nullable = false, updatable = false)
+  private Timestamp updatedAt = Timestamp.valueOf(LocalDateTime.now());
+
+  public enum Priority {
+    LOW,
+    MEDIUM,
+    HIGH
+  }
 
   public ToDoModel() {
 
   }
 
   public ToDoModel(
-      Long id, String nome, String descricao, boolean realizado, int prioridade) {
+      Long id, String name, String description, boolean accomplished, Priority priority, Timestamp createdAt,
+      Timestamp updatedAt) {
     this.id = id;
-    this.nome = nome;
-    this.descricao = descricao;
-    this.realizado = realizado;
-    this.prioridade = prioridade;
+    this.name = name;
+    this.description = description;
+    this.accomplished = accomplished;
+    this.priority = priority;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
-  public ToDoModel(String nome, String descricao, boolean realizado, int prioridade) {
-    this.nome = nome;
-    this.descricao = descricao;
-    this.realizado = realizado;
-    this.prioridade = prioridade;
+  public ToDoModel(String name, String description, boolean accomplished, Priority priority) {
+    this.name = name;
+    this.description = description;
+    this.accomplished = accomplished;
+    this.priority = priority;
   }
 
   public Long getId() {
@@ -47,36 +71,52 @@ public class ToDoModel {
     this.id = id;
   }
 
-  public String getNome() {
-    return nome;
+  public String getName() {
+    return name;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getDescricao() {
-    return descricao;
+  public String getDescription() {
+    return description;
   }
 
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public boolean isRealizado() {
-    return realizado;
+  public boolean getAccomplished() {
+    return accomplished;
   }
 
-  public void setRealizado(boolean realizado) {
-    this.realizado = realizado;
+  public void setAccomplished(boolean accomplished) {
+    this.accomplished = accomplished;
   }
 
-  public int getPrioridade() {
-    return prioridade;
+  public Priority getPriority() {
+    return priority;
   }
 
-  public void setPrioridade(int prioridade) {
-    this.prioridade = prioridade;
+  public void setPriority(Priority priority) {
+    this.priority = priority;
+  }
+
+  public Timestamp getCreatedAt() {
+    return createdAt;
+  }
+
+  public Timestamp setCreatedAt() {
+    return createdAt;
+  }
+
+  public Timestamp getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Timestamp updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
   // @Override
