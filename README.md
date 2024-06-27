@@ -55,7 +55,7 @@ $ http POST :8080/todos name="Todo 1" description="Desc Todo 1" accomplished="fa
     "accomplished": false,
     "priority": "LOW",
     "createdAt": "2024-04-22T22:11:11.954+00:00",
-	"updatedAt": "2024-04-22T22:11:11.954+00:00"
+    "updatedAt": "2024-04-22T22:11:11.954+00:00"
   }
 ```
 
@@ -72,7 +72,7 @@ $ http GET :8080/todos
     "accomplished": false,
     "priority": "LOW",
     "createdAt": "2024-04-22T22:11:11.954+00:00",
-	"updatedAt": "2024-04-22T22:11:11.954+00:00"
+    "updatedAt": "2024-04-22T22:11:11.954+00:00"
   }
 ]
 ```
@@ -89,7 +89,7 @@ $ http GET :8080/todos/1
     "accomplished": false,
     "priority": "LOW",
     "createdAt": "2024-04-22T22:11:11.954+00:00",
-	"updatedAt": "2024-04-22T22:11:11.954+00:00"
+    "updatedAt": "2024-04-22T22:11:11.954+00:00"
   }
 ```
 
@@ -105,7 +105,7 @@ $ http PUT :8080/todos/1 name="Todo 1 Up" description="Desc Todo 1 Up" accomplis
     "accomplished": false,
     "priority": "MEDIUM",
     "createdAt": "2024-04-22T22:11:11.954+00:00",
-	"updatedAt": "2024-04-22T22:11:11.954+00:00"
+    "updatedAt": "2024-04-22T22:11:11.954+00:00"
   }
 ```
 
