@@ -1,6 +1,6 @@
 package com.todolist.todo.models;
 
-// import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -26,6 +26,7 @@ public class ToDoModel {
   private boolean accomplished;
 
   @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
   private Priority priority;
 
   @Column(name = "created_at", nullable = false, updatable = false)
@@ -119,9 +120,9 @@ public class ToDoModel {
     this.updatedAt = updatedAt;
   }
 
-  // @Override
-  // public boolean equals(Object obj) {
-  // return EqualsBuilder.reflectionEquals(obj, this);
-  // }
+  @Override
+  public boolean equals(Object obj) {
+    return EqualsBuilder.reflectionEquals(obj, this);
+  }
 
 }
